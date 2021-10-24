@@ -1,0 +1,5 @@
+list[10] nrs;
+var sum = 0;
+go var i = 0 as i < 10 with i = i + 1:
+    sum = sum + nrs.0;
+print sum;
