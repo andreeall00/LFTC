@@ -29,7 +29,7 @@ class Scanner:
                 tokens = self.getTokens(line)
                 for token in tokens:
                     if token in self.reservedWords or token in self.operators or token in self.separators:
-                        self.pif.append((token, 0))
+                        self.pif.append((token, -1))
                     elif re.search(self.identifierRegex, token):
                         self.pif.append(("id", self.st.add(token)))
                     elif re.search(self.integerRegex, token) or re.search(self.characterRegex, token) or re.search(
@@ -84,6 +84,19 @@ class Scanner:
                 token = characters[pos]
                 pos += 1
                 while pos < len(characters) and characters[pos] != "\"":
+                    token += characters[pos]
+                    pos += 1
+                if pos < len(characters):
+                    token += characters[pos]
+                    pos += 1
+                tokens.append(token)
+                token = ""
+            elif characters[pos] == "\'":
+                if len(token) > 0:
+                    tokens.append(token)
+                token = characters[pos]
+                pos += 1
+                while pos < len(characters) and characters[pos] != "\'":
                     token += characters[pos]
                     pos += 1
                 if pos < len(characters):
