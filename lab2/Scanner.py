@@ -1,5 +1,6 @@
 import re
 from SymbolTable import SymbolTable
+from FiniteAutomaton import FiniteAutomaton
 
 
 class Scanner:
@@ -8,8 +9,10 @@ class Scanner:
                               "with"]
         self.operators = ["+", "-", "*", "div", "mod", "=", "is", ">", ">=", "<", "<=", "and", "or", "not", "."]
         self.separators = [":", ";", " ", "[", "]"]
-        self.identifierRegex = "^[a-zA-Z]([a-zA-Z]|_|[0-9])*$"
-        self.integerRegex = "^(([+-]?[1-9][0-9]*)|0)$"
+        # self.identifierRegex = "^[a-zA-Z]([a-zA-Z]|_|[0-9])*$"
+        self.identifierFA = FiniteAutomaton("fa/identifier.in")
+        # self.integerRegex = "^(([+-]?[1-9][0-9]*)|0)$"
+        self.integerFA = FiniteAutomaton("fa/integer.in")
         self.characterRegex = "^'([a-zA-Z]|[0-9])'$"
         self.stringRegex = "^\"([a-zA-Z]|[0-9])([a-zA-Z]|[0-9])*\"$"
         self.booleanRegex = "^(T|F)$"
@@ -30,9 +33,12 @@ class Scanner:
                 for token in tokens:
                     if token in self.reservedWords or token in self.operators or token in self.separators:
                         self.pif.append((token, -1))
-                    elif re.search(self.identifierRegex, token):
+                    # elif re.search(self.identifierRegex, token):
+                    elif self.identifierFA.isAccepted(token):
                         self.pif.append(("id", self.st.add(token)))
-                    elif re.search(self.integerRegex, token) or re.search(self.characterRegex, token) or re.search(
+                    # elif re.search(self.integerRegex, token) or re.search(self.characterRegex, token) or re.search(
+                    #         self.stringRegex, token) or re.search(self.booleanRegex, token):
+                    elif self.integerFA.isAccepted(token) or re.search(self.characterRegex, token) or re.search(
                             self.stringRegex, token) or re.search(self.booleanRegex, token):
                         self.pif.append(("const", self.st.add(token)))
                     else:

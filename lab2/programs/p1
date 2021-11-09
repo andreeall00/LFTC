@@ -1,10 +1,10 @@
-cst a;
+cst a_1A2;
 cst c;
 cst b;
-verify a > b :
-    yes: verify c > a:
+verify a_1A2 > b :
+    yes: verify c > a_1A2:
         yes: print c;
-        no: print a;
+        no: print a_1A2;
     no: verify c > b:
         yes: print c;
         no: print b;
