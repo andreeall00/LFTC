@@ -1,6 +1,3 @@
-import re
-
-
 class FiniteAutomaton:
     def __init__(self, fileName):
         self.__file = fileName
