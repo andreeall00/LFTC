@@ -11,7 +11,7 @@ class Grammar:
         if self.S not in self.N:
             return False
         for key in self.P.keys():
-            if key not in self.N or len(key) > 1:
+            if key not in self.N:
                 return False
             for value in self.P[key]:
                 for char in value:
