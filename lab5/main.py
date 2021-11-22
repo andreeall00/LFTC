@@ -19,3 +19,7 @@ while True:
         print(gr.show(symbol))
     elif choice == 5:
         print(gr.check())
+
+
+
+
