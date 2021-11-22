@@ -14,8 +14,14 @@ class Grammar:
             if key not in self.N:
                 return False
             for value in self.P[key]:
-                for char in value:
-                    if char not in self.N and char not in self.E:
+                tokens = value.split(" ")
+                cleanTokens = []
+                for token in tokens:
+                    cleanToken = token.replace("{", "")
+                    cleanToken = cleanToken.replace("}", "")
+                    cleanTokens.append(cleanToken)
+                for token in cleanTokens:
+                    if token not in self.N and token not in self.E:
                         return False
         return True
 
