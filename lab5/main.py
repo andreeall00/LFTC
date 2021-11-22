@@ -21,10 +21,3 @@ while True:
         print(gr.check())
 
 
-
-
-
-
-##
-
-

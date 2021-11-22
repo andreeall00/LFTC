@@ -20,8 +20,6 @@ class Grammar:
         return True
 
     def show(self, symbol):
-        print(symbol)
-        print(self.P.keys())
         return self.P[symbol]
 
     def __readFromFile(self):
@@ -33,8 +31,6 @@ class Grammar:
 
     def __setNonTerminalSymbols(self, line):
         self.N = line.strip().split(",")
-
-
 
     def __setTerminalSymbols(self, line):
         self.E = line.strip().split(",")
