@@ -1,6 +1,6 @@
 from grammar import Grammar
 
-gr = Grammar("g1.in")
+gr = Grammar("g2.in")
 
 while True:
     print(

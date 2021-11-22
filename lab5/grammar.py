@@ -20,28 +20,37 @@ class Grammar:
         return True
 
     def show(self, symbol):
+        print(symbol)
+        print(self.P.keys())
         return self.P[symbol]
 
     def __readFromFile(self):
         with open(self.__file) as file:
             self.__setNonTerminalSymbols(file.readline())
             self.__setTerminalSymbols(file.readline())
-            self.__setProductions(file.readline())
             self.__setStartSymbol(file.readline())
+            self.__setProductions(file.readlines())
 
     def __setNonTerminalSymbols(self, line):
         self.N = line.strip().split(",")
 
+
+
     def __setTerminalSymbols(self, line):
         self.E = line.strip().split(",")
 
-    def __setProductions(self, line):
-        transitions = line.strip().split(",")
-        for transition in transitions:
-            terms = transition.split("->")
-            self.P[terms[0]] = []
-            for innerTerms in terms[1].split("|"):
-                self.P[terms[0]].append(innerTerms)
-
     def __setStartSymbol(self, line):
         self.S = line.strip()
+
+    def __setProductions(self, lines):
+        transitions = []
+        for trans in lines:
+            transitions.append(trans.replace('\n', ''))
+        for transition in transitions:
+            terms = transition.split("->")
+            key = terms[0].strip()
+            self.P[key] = []
+            for innerTerms in terms[1].split("|"):
+                self.P[key].append(innerTerms.strip())
+
+

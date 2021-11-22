@@ -1,0 +1,31 @@
+program,compstmt,smtlist,stmt,simplestmt,assignstmt,expr,term,factor,iostmt,structstmt,ifstmt,cond,rel,forstmt,identifier,letter,digit,int,nr,ndigit,char,str,bool
+cst,verify,yes,no,print,var,read,return,list,go,as,with,:,;,[,],+,-,*,div,mod,=,is,>=,<,<=,and,or,not, ,.,0,1,2,3,4,5,6,7,8,9,_,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
+program
+identifier -> letter {_} {letter} {digit}
+letter ->a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z
+digit -> 0|1|2|3|4|5|6|7|8|9
+int -> 0 | nr | + nr | - nr
+nr -> ndigit{digit}
+ndigt -> 1|2|3|4|5|6|7|8|9
+char -> 'letter' | 'digit'
+str -> "char{char}"
+bool -> T | F
+program -> {declist} | {compstmt}
+declist -> declaration {declaration}
+declaration -> type identifier ;
+type -> var | cst | listdcl
+listdcl -> list [ nr ]
+compstmt -> { stmtlist }
+stmtlist -> stmt {stmt}
+stmt -> simplestmt | structstmt
+simplestmt -> assignstmt | iostmt
+assignstmt -> identifier = expr ;
+expr -> term {+ expr} | term {- expr}
+term -> factor {* term }| factor {div term} | factor {mod term}
+factor -> identifier | int
+iostmt -> read identifier ; | print identifier ;
+structstmt -> compstmt | ifstmt | forstmt
+ifstmt -> verify cond yes : stmt no : stmt | verify cond yes : stmt
+cond -> expr rel expr
+rel -> is | < | <= | > | >=
+forstmt -> go assignstmt as cond with assignstmt : stmt
