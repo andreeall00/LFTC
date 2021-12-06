@@ -15,12 +15,7 @@ class Grammar:
                 return False
             for value in self.P[key]:
                 tokens = value.split(" ")
-                cleanTokens = []
                 for token in tokens:
-                    cleanToken = token.replace("{", "")
-                    cleanToken = cleanToken.replace("}", "")
-                    cleanTokens.append(cleanToken)
-                for token in cleanTokens:
                     if token not in self.N and token not in self.E:
                         return False
         return True
@@ -52,7 +47,6 @@ class Grammar:
             terms = transition.split("->")
             key = terms[0].strip()
             self.P[key] = []
-            for innerTerms in terms[1].split("|"):
-                self.P[key].append(innerTerms.strip())
-
-
+            for productions in terms[1].split("|"):
+                productions = productions.strip().split(" ")
+                self.P[key].append(productions)

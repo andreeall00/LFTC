@@ -52,9 +52,9 @@ def recursiveDescendent(grammar, sequence):
             if config.s == BACK_STATE:
                 if config.alpha[-1] in grammar.E:
                     # BACK
-                        config.i -= 1
-                        term = config.alpha.pop(-1)
-                        config.beta = [term] + config.beta
+                    config.i -= 1
+                    term = config.alpha.pop(-1)
+                    config.beta = [term] + config.beta
                     # END BACK
                 else:
                     # ANOTHER TRY
@@ -75,4 +75,13 @@ def recursiveDescendent(grammar, sequence):
                     else:
                         config.alpha.pop(-1)
                         config.beta = [lastProduction[0]] + config.beta[len(lastProduction[1]):]
-                    # END ANOTHER TRY
+                        # END ANOTHER TRY
+    prodRules = []
+    if config.s == ERROR_STATE:
+        return False, []
+    else:
+        for prod in config.alpha:
+            if len(prod) > 1:
+                if (prod[0], prod[1]) in grammar.P:
+                    prodRules.append(prod)
+    return True, prodRules
