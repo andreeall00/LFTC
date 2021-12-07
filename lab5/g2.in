@@ -1,4 +1,4 @@
-program,anyChar,strElms,smtlist,stmt,simplestmt,assignstmt,expr,term,factor,iostmt,structstmt,ifstmt,cond,rel,forstmt,identifier,letter,digit,int,nr,ndigit,char,str,bool,declist,stmtlist,declaration,type,listdcl,compstmt
+program,anyChar,strElms,smtlist,stmt,simplestmt,assignstmt,expr,term,factor,iostmt,structstmt,ifstmt,cond,rel,forstmt,identifier,letter,digit,int,nr,ndigit,char,str,bool,declist,stmtlist,declaration,type,listdcl,compstmt,anyCharList,digitList
 cst,verify,yes,no,print,var,read,return,list,go,as,with,:,;,[,],+,-,*,div,mod,=,is,>=,<,>,<=,and,or,not, ,.,',",0,1,2,3,4,5,6,7,8,9,_,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
 program
 program -> declist | stmtlist | declist stmtlist
@@ -10,8 +10,8 @@ stmtlist -> stmt ; | stmt ; stmtlist
 stmt -> simplestmt | structstmt
 simplestmt -> assignstmt | iostmt
 assignstmt -> identifier = expr
-expr -> term | expr + term | expr - term
-term -> factor | term * factor | term div factor | term mod factor
+expr -> term | term + expr | term - expr
+term -> factor | factor * term | factor div term | factor mod term
 factor -> identifier | int
 iostmt -> read identifier | print identifier
 structstmt -> ifstmt | forstmt
@@ -24,8 +24,9 @@ anyCharList -> anyChar | anyChar anyCharList
 anyChar -> letter | digit | _
 letter ->a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z
 digit -> 0|1|2|3|4|5|6|7|8|9
+digitList -> digit | digit digitList
 int -> 0 | nr | + nr | - nr
-nr -> ndigit | nr digit
+nr -> ndigit | ndigit digitList
 ndigit -> 1|2|3|4|5|6|7|8|9
 char -> ' letter ' | ' digit '
 str -> " strElms " | " str strElms "
