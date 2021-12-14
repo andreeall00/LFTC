@@ -87,7 +87,7 @@ def recursiveDescendent(grammar, sequence):
             if type(prod) is tuple:
                 if prod[1] in grammar.P[prod[0]]:
                     prods.append(prod)
-        # print("Productions", prods)
+        print("Productions", prods)
     return "No error", prods
 
 
@@ -167,7 +167,17 @@ class ParserOutput:
         return str(self.table)
 
 
+def readSequence(lines):
+    seq = []
+    for line in lines:
+        elms = line.split("'")
+        seq.append(elms[1])
+    print("Sequence", seq)
+    return seq
+
+
 if __name__ == "__main__":
+    # gr = Grammar("g1.in")
     gr = Grammar("g2.in")
 
     while True:
@@ -188,14 +198,18 @@ if __name__ == "__main__":
         elif choice == 5:
             print(gr.check())
         elif choice == 6:
-            response, prods = recursiveDescendent(gr, ["var", "a", ";"])
-            # response, prods = recursiveDescendent(gr, ["var", "a"])
-            # response, prods = recursiveDescendent(gr, ["var", "a", ";", "a", "=", "1", "+", "2", "+", "3", ";"])
+            # with open("seq.txt") as file:
+            #     lines = file.readlines()
+            #     seq = readSequence(lines)
+            # response, prods = recursiveDescendent(gr, seq)
+            response, prods = recursiveDescendent(gr, ["var", "a", ";", "a", "=", "1", "+", "2", "+", "3", ";"])
             # response, prods = recursiveDescendent(gr, ["var", "a", ";", "a", "=", "1", "+", "2", "+", "3"])
             print("Result", response)
             print("Productions", prods)
             table = ParserOutput(prods).parseProductions()
             print(str(table))
-            f = open("parsingTable.txt", "w")
+            # f = open("out1.txt", "w")
+            f = open("out2.txt", "w")
+            # f = open("parsingTable.txt", "w")
             f.write(str(table))
             f.close()
