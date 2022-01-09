@@ -1,0 +1,8 @@
+var nr;
+read nr;
+verify nr <= 1 or nr mod 2:
+    yes: return F;
+go var i = 3 as i * i <= nr with i = i + 2:
+    verify nr mod i is 0:
+        yes: return F;
+return T;

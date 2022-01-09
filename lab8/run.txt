@@ -1,0 +1,1 @@
+flex lang.lxi && gcc lex.yy.c -lm -o out.exe && out.exe p1.txt > output.txt
