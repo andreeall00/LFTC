@@ -5,6 +5,9 @@ verify a > b :
     yes: verify c > a:
         yes: print c;
         no: print a;
+	;
     no: verify c > b:
         yes: print c;
         no: print b;
+	;
+;

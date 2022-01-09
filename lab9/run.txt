@@ -1,0 +1,1 @@
+flex lang.lxi && bison -dy lang.y && gcc lex.yy.c y.tab.c -lm -o out.exe && out.exe < p1.txt > output.txt

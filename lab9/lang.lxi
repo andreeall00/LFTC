@@ -1,0 +1,67 @@
+%{
+#include <stdio.h>
+#include <string.h>
+#include "y.tab.h"
+
+int line = 0;
+%}
+
+%option noyywrap
+%option caseless
+
+IDENTIFIER  [a-zA-Z][a-zA-Z0-9_]*
+DIGIT 		[0-9]
+NR  		[+-]?[1-9][0-9]*|0$
+CHAR     	\'[a-zA-Z0-9]\'
+STR 		\"[a-zA-Z0-9]*\"
+BOOL    	[TF]
+
+%%
+
+cst    {printf("Reserved word: %s\n", yytext); return CST;}
+verify {printf("Reserved word: %s\n", yytext); return VERIFY;}
+yes    {printf("Reserved word: %s\n", yytext); return YES;}
+no     {printf("Reserved word: %s\n", yytext); return NO;}
+print  {printf("Reserved word: %s\n", yytext); return PRINT;}
+var    {printf("Reserved word: %s\n", yytext); return VAR;}
+read   {printf("Reserved word: %s\n", yytext); return READ;}
+return {printf("Reserved word: %s\n", yytext); return RETURN;}
+list   {printf("Reserved word: %s\n", yytext); return LIST;}
+go     {printf("Reserved word: %s\n", yytext); return GO;}
+as     {printf("Reserved word: %s\n", yytext); return AS;}
+with   {printf("Reserved word: %s\n", yytext); return WITH;}
+
+"div"	{printf("Operator: %s\n", yytext); return DIV;}
+"mod"	{printf("Operator: %s\n", yytext); return MOD;}
+"is"    {printf("Operator: %s\n", yytext); return IS;}
+"and"	{printf("Operator: %s\n", yytext); return AND;}
+"or"    {printf("Operator: %s\n", yytext); return OR;}
+"not"   {printf("Operator: %s\n", yytext); return NOT;}
+
+{BOOL} 		  {printf("Boolean: %s\n", yytext); return BOOL1;}
+{IDENTIFIER}  {printf("Identifier: %s\n", yytext); return IDENTIFIER1;}
+{DIGIT} 	  {printf("Digit: %s\n", yytext); return DIGIT1;}
+{NR}  	   	  {printf("Number: %s\n", yytext); return NR1;}
+{CHAR}     	  {printf("Char: %s\n", yytext); return CHAR1;}
+{STR} 		  {printf("String: %s\n", yytext); return STR1;}
+
+"+"	    {printf("Operator: %s\n", yytext); return PLUS;}
+"-"	    {printf("Operator: %s\n", yytext); return MINUS;}
+"*"	    {printf("Operator: %s\n", yytext); return MUL;}
+"="	    {printf("Operator: %s\n", yytext); return ASSIGN;}
+">"     {printf("Operator: %s\n", yytext); return GR;}
+">="    {printf("Operator: %s\n", yytext); return GRE;}
+"<"     {printf("Operator: %s\n", yytext); return LS;}
+"<="	{printf("Operator: %s\n", yytext); return LSE;}
+"."     {printf("Operator: %s\n", yytext); return DOT;}
+
+":"	{printf("Separator: %s\n", yytext); return DOTS;}
+";"	{printf("Separator: %s\n", yytext); return SEMI_COL;}
+"["	{printf("Separator: %s\n", yytext); return OPEN_BRK;}
+"]"	{printf("Separator: %s\n", yytext); return CLOSED_BRK;}
+
+[ \t]+  	{}
+[\n]+       {line++;}
+
+.|\n          {printf("Error: %s on line %d\n", yytext, line);}
+%%

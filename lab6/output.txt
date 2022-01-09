@@ -1,4 +1,0 @@
-Error: @ on line 0
-Error: / on line 6
-PIF: var:0 space:0 id:1 ;:0 read:0 space:0 id:1 ;:0 verify:0 space:0 id:1 space:0 <=:0 space:0 cst:0 space:0 or:0 space:0 id:1 space:0 mod:0 space:0 cst:2 ::0 yes:0 ::0 space:0 return:0 space:0 cst:3 ;:0 go:0 space:0 var:0 space:0 id:4 space:0 =:0 space:0 cst:5 cst:0 cst:0 space:0 as:0 space:0 id:4 *:0 id:4 space:0 <=:0 space:0 id:1 space:0 with:0 space:0 id:4 space:0 =:0 space:0 id:4 space:0 +:0 space:0 cst:2 ::0 verify:0 space:0 id:1 space:0 mod:0 space:0 id:4 space:0 is:0 space:0 cst:5 ::0 yes:0 ::0 space:0 return:0 space:0 cst:3 return:0 space:0 cst:6 ;:0
-ST: nr : 1 2 : 2 F : 3 i : 4 0 : 5 T : 6

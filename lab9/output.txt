@@ -1,0 +1,51 @@
+Reserved word: cst
+Identifier: a
+Separator: ;
+Reserved word: cst
+Identifier: c
+Separator: ;
+Reserved word: cst
+Identifier: b
+Separator: ;
+Reserved word: verify
+Identifier: a
+Operator: >
+Identifier: b
+Separator: :
+Reserved word: yes
+Separator: :
+Reserved word: verify
+Identifier: c
+Operator: >
+Identifier: a
+Separator: :
+Reserved word: yes
+Separator: :
+Reserved word: print
+Identifier: c
+Separator: ;
+Reserved word: no
+Separator: :
+Reserved word: print
+Identifier: a
+Separator: ;
+Separator: ;
+Reserved word: no
+Separator: :
+Reserved word: verify
+Identifier: c
+Operator: >
+Identifier: b
+Separator: :
+Reserved word: yes
+Separator: :
+Reserved word: print
+Identifier: c
+Separator: ;
+Reserved word: no
+Separator: :
+Reserved word: print
+Identifier: b
+Separator: ;
+Separator: ;
+Separator: ;
